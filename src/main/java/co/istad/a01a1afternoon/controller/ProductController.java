@@ -1,12 +1,16 @@
 package co.istad.a01a1afternoon.controller;
 
+import io.micrometer.common.KeyValue;
+import co.istad.a01a1afternoon.dto.CreateProductRequest;
 import co.istad.a01a1afternoon.dto.ProductResponse;
 import co.istad.a01a1afternoon.dto.UpdateProductRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
+import io.micrometer.common.KeyValue;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -19,13 +23,14 @@ public class ProductController {
             @RequestParam(required = false,defaultValue = "20") int pageSize,
             @RequestParam(required = false, defaultValue = "") String name
     ){
-        log.info("Page number : {},Page size : {} , Page name : {}",pageNumber,pageSize,name    );
+        System.out.printf("Page number : {},Page size : {} , Page name : {}",pageNumber,pageSize,name);
+
         return List.of();
     }
 
     @PostMapping
     public void createNewProduct(@RequestBody CreateProductRequest productRequest){
-        log.info("createProductRequest : {}",productRequest);
+        System.out.printf("createProductRequest{}",productRequest);
     }
 
     @PutMapping("/{code}")
@@ -33,7 +38,7 @@ public class ProductController {
             @PathVariable String code,
             @RequestBody UpdateProductRequest updateProductRequest
     ){
-        log.info("updateProductByCode : {}, updatedProductRequest : {}",code,updateProductRequest);
+        System.out.printf("updateProductByCode : {}, updatedProductRequest : {}",code,updateProductRequest);
     }
 
     @PatchMapping("/{code}")
@@ -41,12 +46,15 @@ public class ProductController {
             @PathVariable String code,
             @RequestBody UpdateProductRequest updateProductRequest
     ){
-        log.info("upateProductPartiallyByCode : {}, updateProductRequest : {}" , code,updateProductRequest);
+        System.out.printf("upateProductPartiallyByCode : {}, updateProductRequest : {}" , code,updateProductRequest);
     }
 
     @DeleteMapping("/{code}")
     public void deleteProductByCode(@PathVariable String code){
-        log.info("deleteProductByCode : {}",code);
+
+
+
+        System.out.printf("deleteProductByCode : {}",code);;
     }
 
 
